@@ -5,7 +5,7 @@
 - RUTH: React Under The Hood 스터디
 - Project 00: FORM 만들기
 
-## Project00 Subject
+## Project00 구현사항
 
 - [ ]  회원가입 Dummy API 찾아보기
 - 이메일(필수), 전화번호(필수), 비밀번호(필수), 비밀번호 확인(필수), 유저네임(필수), 추천인 유저네임(선택), 약관동의 2개(필수), 마케팅동의 1개(선택)
