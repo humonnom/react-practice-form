@@ -1,5 +1,13 @@
 import { Infos } from "../interfaces/interface";
 
+export const STATE = Object.freeze({
+  EMPTY: Symbol("empty"),
+  WRONGLENGTH: Symbol("wrong-length"),
+  MALFORMED: Symbol("malformed"),
+  OVERLAP: Symbol("overlap"),
+  OK: Symbol("ok"),
+});
+
 export const TYPE = Object.freeze({
   NAME: Symbol("name"),
   EMAIL: Symbol("email"),

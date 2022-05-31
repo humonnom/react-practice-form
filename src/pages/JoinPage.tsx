@@ -1,21 +1,22 @@
-import { useEffect, useReducer } from "react";
-import { InfosReducer } from "../utils/util";
+import { useReducer } from "react";
+import { InfosReducer, STATE } from "../utils/util";
 import { Infos } from "../interfaces/interface";
 import Terms from "../components/Terms";
 import InfosContainer from "../components/InfosContainer";
 import { useNavigate } from "react-router-dom";
 
-const JoinPage = (params: any) => {
-  const initialValue: Infos = {
-    name: "",
-    email: "",
-    phoneNumber: "",
-    password: "",
-    friendName: "",
-    term: "",
-  };
+const JoinPage = () => {
   const navigate = useNavigate();
-  const [infos, setInfos] = useReducer(InfosReducer, initialValue);
+  const initialState: Infos = {
+    name: STATE.EMPTY,
+    email: STATE.EMPTY,
+    phoneNumber: STATE.EMPTY,
+    password: STATE.EMPTY,
+    friendName: STATE.EMPTY,
+    term: STATE.EMPTY,
+  };
+  const [inputState, setState] = useReducer(InfosReducer, initialState);
+
   const handleSubmit = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     console.log("제출");
@@ -23,9 +24,7 @@ const JoinPage = (params: any) => {
     navigate("/confirm");
   };
 
-  useEffect(() => {
-    console.log(infos);
-  }, [infos]);
+  //inputState: submit시 처리에 사용
 
   return (
     <>
