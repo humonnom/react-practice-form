@@ -16,6 +16,11 @@
     "noEmit": true,
     "jsx": "react-jsx"
   },
-  "include": ["src"],
+  "include": [
+    "src",
+    "src/example-code/useInput-example.js",
+    "src/example-code/JoinPage-example.js",
+    "src/example-code/util-example.js"
+  ],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
