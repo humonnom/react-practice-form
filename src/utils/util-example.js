@@ -50,3 +50,7 @@ export function getApiEndpoint() {
   }
   return endpoint;
 }
+
+
+export function isEmail() {return true;};
+export function isURL() {return true;};

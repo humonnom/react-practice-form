@@ -2,11 +2,10 @@ import "./App.css";
 import { Link } from "react-router-dom";
 
 function App() {
-  const handleClick = () => {};
   return (
-    <div className='App'>
-      <button type='button' onClick={handleClick}>
-        <Link to='/join'>Join</Link>
+    <div className="App">
+      <button type="button">
+        <Link to="/join">click to join</Link>
       </button>
     </div>
   );

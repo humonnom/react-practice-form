@@ -1,6 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { isEmail, isURL } from "validator";
-import { isPassword, getApiEndpoint } from "../utils/util";
+import { isEmail, isURL, isPassword, getApiEndpoint } from "../utils/util";
 import { useRequestAuth } from "./useRequestAuth";
 
 export function useInput({ inputType, id, type, ...args }) {
