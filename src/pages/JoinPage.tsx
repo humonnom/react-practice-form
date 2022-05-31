@@ -1,9 +1,9 @@
 import { useReducer } from "react";
-import { InfosReducer, STATE } from "../utils/util";
-import { Infos } from "../interfaces/interface";
-import Terms from "../components/Terms";
-import InfosContainer from "../components/InfosContainer";
 import { useNavigate } from "react-router-dom";
+import TermsContainer from "../components/TermsContainer";
+import InfosContainer from "../components/InfosContainer";
+import { Infos } from "../interfaces/interface";
+import { InfosReducer, STATE } from "../utils/util";
 
 const JoinPage = () => {
   const navigate = useNavigate();
@@ -30,7 +30,7 @@ const JoinPage = () => {
     <>
       <form>
         <InfosContainer />
-        <Terms />
+        <TermsContainer />
         <button type="button" onClick={handleSubmit}>
           submit
         </button>
