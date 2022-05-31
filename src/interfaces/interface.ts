@@ -1,5 +1,3 @@
-import { TYPE } from "../utils/util";
-
 interface Infos {
   name: symbol;
   email: symbol;
