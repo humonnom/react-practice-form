@@ -1,21 +1,36 @@
-import { useReducer } from "react";
+import { useMemo, useReducer } from "react";
 import { useNavigate } from "react-router-dom";
-import TermsContainer from "../components/TermsContainer";
-import InfosContainer from "../components/InfosContainer";
-import { Infos } from "../interfaces/interface";
-import { InfosReducer, STATE } from "../utils/util";
+import AgreementContainer from "../containers/AgreementContainer";
+import InfosContainer from "../containers/InfosContainer";
+import { DataManage, StateManage } from "../interfaces/interface";
+import { dataReducer, STATE, stateReducer } from "../utils/util";
 
 const JoinPage = () => {
   const navigate = useNavigate();
-  const initialState: Infos = {
+  const initialData: DataManage = {
+    name: "",
+    email: "",
+    phoneNumber: "",
+    password: "",
+    friendName: "",
+    term: "",
+    privacyPolicy: "",
+    receiveEmail: "",
+  };
+
+  const initialState: StateManage = {
     name: STATE.EMPTY,
     email: STATE.EMPTY,
     phoneNumber: STATE.EMPTY,
     password: STATE.EMPTY,
     friendName: STATE.EMPTY,
     term: STATE.EMPTY,
+    privacyPolicy: STATE.EMPTY,
+    receiveEmail: STATE.EMPTY,
   };
-  const [inputState, setState] = useReducer(InfosReducer, initialState);
+
+  const [inputData, updateData] = useReducer(dataReducer, initialData);
+  const [inputState, updateState] = useReducer(stateReducer, initialState);
 
   const handleSubmit = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
@@ -23,16 +38,25 @@ const JoinPage = () => {
     // 성공했다고 가정
     navigate("/confirm");
   };
-
   //inputState: submit시 처리에 사용
+
+  const isNotOK = (state: symbol) => state !== STATE.OK;
+
+  const submittable = useMemo(() => {
+    for (const key in inputState) {
+      console.log("false");
+      if (isNotOK(inputState[key as keyof StateManage])) return false;
+    }
+    return true;
+  }, [inputState]);
 
   return (
     <>
       <form>
         <InfosContainer />
-        <TermsContainer />
-        <button type="button" onClick={handleSubmit}>
-          submit
+        <AgreementContainer updateState={updateState} />
+        <button disabled={!submittable} type="button" onClick={handleSubmit}>
+          {submittable ? "제출하기" : "필수 항목을 모두 채워주세요"}
         </button>
       </form>
     </>

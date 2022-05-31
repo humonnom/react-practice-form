@@ -1,6 +1,6 @@
 import { useInput } from "../hooks/useInput";
 import { TYPE } from "../utils/util";
-import StateMessage from "./StateMessage";
+import StateMessage from "../components/StateMessage";
 
 const InfosContainer = () => {
   const { value: userNameValue, comp: userNameComp } = useInput({
@@ -8,6 +8,7 @@ const InfosContainer = () => {
     id: "name",
     type: "text",
     label: "유저네임",
+    required: true,
   });
 
   const { value: emailValue, comp: emailComp } = useInput({
@@ -15,6 +16,7 @@ const InfosContainer = () => {
     id: "email",
     type: "email",
     label: "이메일",
+    required: true,
   });
 
   const { value: phoneNumberValue, comp: phoneNumberComp } = useInput({
@@ -22,6 +24,7 @@ const InfosContainer = () => {
     id: "phone",
     type: "tel",
     label: "전화번호",
+    required: true,
   });
 
   const { value: passwordValue, comp: passwordComp } = useInput({
@@ -29,6 +32,7 @@ const InfosContainer = () => {
     id: "password",
     type: "password",
     label: "비밀번호",
+    required: true,
   });
 
   const { value: passwordConfirmValue, comp: passwordConfirmComp } = useInput({
@@ -36,6 +40,7 @@ const InfosContainer = () => {
     id: "confirm",
     type: "password",
     label: "비밀번호 확인",
+    required: true,
   });
 
   const { value: friendNameValue, comp: friendNameComp } = useInput({
@@ -43,6 +48,7 @@ const InfosContainer = () => {
     id: "friend-name",
     type: "text",
     label: "추천인 유저네임",
+    required: false,
   });
 
   return (

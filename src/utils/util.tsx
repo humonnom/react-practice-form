@@ -1,4 +1,4 @@
-import { Infos } from "../interfaces/interface";
+import { DataManage, StateManage } from "../interfaces/interface";
 
 export const STATE = Object.freeze({
   EMPTY: Symbol("empty"),
@@ -15,11 +15,24 @@ export const TYPE = Object.freeze({
   PASSWORD: Symbol("password"),
   FRIENDNAME: Symbol("friend-name"),
   TERM: Symbol("term"),
+  PRIVACYPOLICY: Symbol("privacy-policy"),
+  REVEIVEEMAIL: Symbol("receive-email"),
 });
 
-export const InfosReducer = (state: Infos, nextState: any): Infos => {
+export const stateReducer = (
+  state: StateManage,
+  nextState: any
+): StateManage => {
   return {
     ...state,
     ...nextState,
   };
 };
+export const dataReducer = (state: DataManage, nextState: any): DataManage => {
+  return {
+    ...state,
+    ...nextState,
+  };
+};
+
+export const getCheckBoxState = {};
