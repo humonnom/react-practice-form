@@ -30,21 +30,20 @@ const JoinPage = () => {
   };
 
   const [inputData, updateData] = useReducer(dataReducer, initialData);
+  // datas {name: 'jueun park' ...} => use for send data
   const [inputState, updateState] = useReducer(stateReducer, initialState);
+  // states {name: STATE.OK ...} => use for validation
 
   const handleSubmit = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
-    console.log("제출");
-    // 성공했다고 가정
-    navigate("/confirm");
+    navigate("/confirm"); // case: success
+    // case: fail =>
   };
-  //inputState: submit시 처리에 사용
 
   const isNotOK = (state: symbol) => state !== STATE.OK;
 
   const submittable = useMemo(() => {
     for (const key in inputState) {
-      console.log("false");
       if (isNotOK(inputState[key as keyof StateManage])) return false;
     }
     return true;

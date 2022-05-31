@@ -1,11 +1,15 @@
 import { useMemo, useState } from "react";
 
-export const useInput = ({ typeInApp, id, type, label, required }: any) => {
+export const useInput = ({
+  typeInApp: symbol, // typeInApp: use for validaion
+  id,
+  type,
+  label,
+  required,
+}: any) => {
   const [value, setValue] = useState("");
-
   const onChange = (event: any) => setValue(event.currentTarget.value);
   const init = () => setValue("");
-
   const comp = useMemo(() => {
     return (
       <>

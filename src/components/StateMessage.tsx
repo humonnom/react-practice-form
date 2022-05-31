@@ -4,7 +4,7 @@ const StateMessage = ({ type, value }: any) => {
   // validation
   const validator = () => {
     if (type === TYPE.NAME) {
-      return console.log("name");
+      return alert("name");
     }
     return null;
   };
