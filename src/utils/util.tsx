@@ -34,5 +34,3 @@ export const dataReducer = (state: DataManage, nextState: any): DataManage => {
     ...nextState,
   };
 };
-
-export const getCheckBoxState = {};

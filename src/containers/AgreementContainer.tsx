@@ -12,7 +12,7 @@ const AgreementContainer = ({ updateState }: any) => {
     required: true,
   });
   useEffect(() => {
-    updateState({ term: STATE.OK });
+    updateState({ term: STATE.OK }); // should update validation
   }, [termValue]);
 
   const { value: privacyPolicyValue, comp: privacyPolicyComp } = useInput({
@@ -23,7 +23,7 @@ const AgreementContainer = ({ updateState }: any) => {
     required: true,
   });
   useEffect(() => {
-    updateState({ privacyPolicy: true });
+    updateState({ privacyPolicy: true }); // should update validation
   }, [termValue]);
 
   const { value: receiveEmailValue, comp: receiveEmailComp } = useInput({
@@ -34,7 +34,7 @@ const AgreementContainer = ({ updateState }: any) => {
     required: false,
   });
   useEffect(() => {
-    updateState({ receiveEmail: true });
+    updateState({ receiveEmail: true }); // should update validation
   }, [termValue]);
 
   return (
