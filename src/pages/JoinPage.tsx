@@ -1,31 +1,27 @@
-import { useEffect, useMemo, useReducer } from "react";
-import { useInput } from "../hooks/useInput";
-import { InfosReducer, TYPE } from "../utils/util";
+import { useEffect, useReducer } from "react";
+import { InfosReducer } from "../utils/util";
 import { Infos } from "../interfaces/interface";
-import StateMessage from "../components/StateMessage";
+import Terms from "../components/Terms";
+import InfosContainer from "../components/InfosContainer";
+import { useNavigate } from "react-router-dom";
 
 const JoinPage = (params: any) => {
   const initialValue: Infos = {
     name: "",
-    number: "",
+    email: "",
+    phoneNumber: "",
+    password: "",
+    friendName: "",
+    term: "",
   };
+  const navigate = useNavigate();
   const [infos, setInfos] = useReducer(InfosReducer, initialValue);
-
-  const { value: userNameValue, comp: userNameComp } = useInput({
-    typeInApp: TYPE.NAME,
-    id: "name",
-    type: "text",
-    label: "유저네임",
-  });
-
-  // const submitHandler = (event: React.MouseEvent<HTMLButtonElement>) => {
-  //   event.preventDefault();
-  // };
-
-  // useEffect(() => {
-  //   console.log("userNameValue");
-  //   console.log(userNameValue);
-  // }, [userNameValue]);
+  const handleSubmit = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+    console.log("제출");
+    // 성공했다고 가정
+    navigate("/confirm");
+  };
 
   useEffect(() => {
     console.log(infos);
@@ -33,8 +29,13 @@ const JoinPage = (params: any) => {
 
   return (
     <>
-      {userNameComp}
-      <StateMessage type={TYPE.NAME} value={userNameComp} />
+      <form>
+        <InfosContainer />
+        <Terms />
+        <button type="button" onClick={handleSubmit}>
+          submit
+        </button>
+      </form>
     </>
   );
 };

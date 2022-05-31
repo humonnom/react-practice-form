@@ -7,7 +7,11 @@ interface Info {
 
 interface Infos {
   name: any;
-  number: any;
+  email: any;
+  phoneNumber: any;
+  password: any;
+  friendName: any;
+  term: any;
 }
 
 export type { Info, Infos };
