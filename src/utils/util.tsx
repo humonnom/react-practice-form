@@ -1,6 +1,7 @@
 import { DataManage, StateManage } from "../interfaces/interface";
 
 export const STATE = Object.freeze({
+  INIT: Symbol("init"),
   EMPTY: Symbol("empty"),
   WRONGLENGTH: Symbol("wrong-length"),
   MALFORMED: Symbol("malformed"),

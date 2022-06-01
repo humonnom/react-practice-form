@@ -19,14 +19,14 @@ const JoinPage = () => {
   };
 
   const initialState: StateManage = {
-    name: STATE.EMPTY,
-    email: STATE.EMPTY,
-    phoneNumber: STATE.EMPTY,
-    password: STATE.EMPTY,
-    friendName: STATE.EMPTY,
-    term: STATE.EMPTY,
-    privacyPolicy: STATE.EMPTY,
-    receiveEmail: STATE.EMPTY,
+    name: STATE.INIT,
+    email: STATE.INIT,
+    phoneNumber: STATE.INIT,
+    password: STATE.INIT,
+    friendName: STATE.INIT,
+    term: STATE.INIT,
+    privacyPolicy: STATE.INIT,
+    receiveEmail: STATE.INIT,
   };
 
   const [inputData, updateData] = useReducer(dataReducer, initialData);

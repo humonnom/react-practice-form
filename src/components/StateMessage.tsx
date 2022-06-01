@@ -1,17 +1,18 @@
 import { TYPE } from "../utils/util";
 
 const StateMessage = ({ type, value }: any) => {
-  // validation
   const validator = () => {
     if (type === TYPE.NAME) {
-      return alert("name");
     }
-    return null;
   };
-  const stateMessage = validator ? validator() : "";
+
+  const stateMessage = "상태 메세지";
+  console.log(stateMessage);
+  // should update data & state
+
   return (
     <>
-      <p>{stateMessage || ""}</p>
+      <p>{""}</p>
     </>
   );
 };
