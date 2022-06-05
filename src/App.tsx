@@ -1,12 +1,10 @@
 import "./App.css";
-import { Link } from "react-router-dom";
+import LinkButton from "./components/LinkButton";
 
 function App() {
   return (
     <div className="App">
-      <button type="button">
-        <Link to="/join">click to join</Link>
-      </button>
+      <LinkButton to="/">click to join</LinkButton>
     </div>
   );
 }
