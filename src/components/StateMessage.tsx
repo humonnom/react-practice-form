@@ -1,6 +1,6 @@
 import { TYPE } from "../utils/util";
 
-const StateMessage = ({ type, value }: any) => {
+const StateMessage = ({ type, value, update }: any) => {
   const validator = () => {
     if (type === TYPE.NAME) {
     }

@@ -1,38 +1,47 @@
-import { useMemo, useReducer } from "react";
+import { useCallback, useEffect, useMemo, useReducer } from "react";
 import { useNavigate } from "react-router-dom";
+import { InfosInterface } from "../interfaces/interface";
+import { STATE, infosReducer } from "../utils/util";
 import AgreementContainer from "../containers/AgreementContainer";
-import InfosContainer from "../containers/InfosContainer";
-import { DataManage, StateManage } from "../interfaces/interface";
-import { dataReducer, STATE, stateReducer } from "../utils/util";
+import UserInfoContainer from "../containers/UserInfosContainer";
 
 const JoinPage = () => {
   const navigate = useNavigate();
-  const initialData: DataManage = {
-    name: "",
-    email: "",
-    phoneNumber: "",
-    password: "",
-    friendName: "",
-    term: "",
-    privacyPolicy: "",
-    receiveEmail: "",
+  const initialInfos: InfosInterface = {
+    name: { value: "", status: STATE.INIT },
+    email: { value: "", status: STATE.INIT },
+    phoneNumber: { value: "", status: STATE.INIT },
+    password: { value: "", status: STATE.INIT },
+    friendName: { value: "", status: STATE.INIT },
+    term: { value: "", status: STATE.INIT },
+    privacyPolicy: { value: "", status: STATE.INIT },
+    receiveEmail: { value: "", status: STATE.INIT },
   };
+  const [infos, updateInfos] = useReducer(infosReducer, initialInfos);
 
-  const initialState: StateManage = {
-    name: STATE.INIT,
-    email: STATE.INIT,
-    phoneNumber: STATE.INIT,
-    password: STATE.INIT,
-    friendName: STATE.INIT,
-    term: STATE.INIT,
-    privacyPolicy: STATE.INIT,
-    receiveEmail: STATE.INIT,
-  };
+  const updateValue = useCallback(
+    ({ key, value }: { key: string; value: any }) => {
+      const curInfo = infos[key as keyof InfosInterface];
+      const newInfo = { ...curInfo, value };
+      console.log(newInfo);
+      updateInfos({ [key]: newInfo });
+    },
+    [infos, updateInfos]
+  );
 
-  const [inputData, updateData] = useReducer(dataReducer, initialData);
-  // datas {name: 'jueun park' ...} => use for send data
-  const [inputState, updateState] = useReducer(stateReducer, initialState);
-  // states {name: STATE.OK ...} => use for validation
+  const updateStatus = useCallback(
+    ({ key, status }: { key: string; status: symbol }) => {
+      const curInfo = infos[key as keyof InfosInterface];
+      const newInfo = { ...curInfo, status };
+      console.log(newInfo);
+      updateInfos({ [key]: newInfo });
+    },
+    [infos, updateInfos]
+  );
+
+  useEffect(() => {
+    console.log(infos);
+  }, [infos]);
 
   const handleSubmit = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
@@ -43,17 +52,24 @@ const JoinPage = () => {
   const isNotOK = (state: symbol) => state !== STATE.OK;
 
   const submittable = useMemo(() => {
-    for (const key in inputState) {
-      if (isNotOK(inputState[key as keyof StateManage])) return false;
+    for (const key in infos) {
+      const curStatus = infos[key as keyof InfosInterface].status;
+      if (isNotOK(curStatus)) return false;
     }
     return true;
-  }, [inputState]);
+  }, [infos]);
 
   return (
     <>
       <form>
-        <InfosContainer />
-        <AgreementContainer updateState={updateState} />
+        <UserInfoContainer
+          updateValue={updateValue}
+          updateStatus={updateStatus}
+        />
+        <AgreementContainer
+          updateValue={updateValue}
+          updateStatus={updateStatus}
+        />
         <button disabled={!submittable} type="button" onClick={handleSubmit}>
           {submittable ? "제출하기" : "필수 항목을 모두 채워주세요"}
         </button>

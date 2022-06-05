@@ -4,7 +4,7 @@ import LinkButton from "./components/LinkButton";
 function App() {
   return (
     <div className="App">
-      <LinkButton to="/">click to join</LinkButton>
+      <LinkButton to="/join">click to join</LinkButton>
     </div>
   );
 }

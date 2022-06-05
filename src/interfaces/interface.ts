@@ -1,22 +1,16 @@
-interface DataManage {
-  name: string;
-  email: string;
-  phoneNumber: string;
-  password: string;
-  friendName: string;
-  term: string;
-  privacyPolicy: string;
-  receiveEmail: string;
+interface Info {
+  value: string;
+  status: symbol;
 }
-interface StateManage {
-  name: symbol;
-  email: symbol;
-  phoneNumber: symbol;
-  password: symbol;
-  friendName: symbol;
-  term: symbol;
-  privacyPolicy: symbol;
-  receiveEmail: symbol;
+interface InfosInterface {
+  name: Info;
+  email: Info;
+  phoneNumber: Info;
+  password: Info;
+  friendName: Info;
+  term: Info;
+  privacyPolicy: Info;
+  receiveEmail: Info;
 }
 
-export type { DataManage, StateManage };
+export type { Info, InfosInterface };

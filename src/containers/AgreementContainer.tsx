@@ -3,7 +3,7 @@ import { STATE, TYPE } from "../utils/util";
 import StateMessage from "../components/StateMessage";
 import { useEffect } from "react";
 
-const AgreementContainer = ({ updateState }: any) => {
+const AgreementContainer = ({ updateValue, updateStatus }: any) => {
   const { value: termValue, comp: termComp } = useInput({
     typeInApp: TYPE.TERM,
     id: "terms",
@@ -12,29 +12,29 @@ const AgreementContainer = ({ updateState }: any) => {
     required: true,
   });
   useEffect(() => {
-    updateState({ term: STATE.OK }); // should update validation
+    updateStatus({ term: STATE.OK }); // should update validation
   }, [termValue]);
 
   const { value: privacyPolicyValue, comp: privacyPolicyComp } = useInput({
     typeInApp: TYPE.PRIVACYPOLICY,
-    id: "terms",
+    id: "privacy-policy",
     type: "checkbox",
     label: "개인정보수집동의",
     required: true,
   });
   useEffect(() => {
-    updateState({ privacyPolicy: true }); // should update validation
+    updateStatus({ privacyPolicy: true }); // should update validation
   }, [termValue]);
 
   const { value: receiveEmailValue, comp: receiveEmailComp } = useInput({
     typeInApp: TYPE.REVEIVEEMAIL,
-    id: "terms",
+    id: "receive-email",
     type: "checkbox",
     label: "메일수신동의",
     required: false,
   });
   useEffect(() => {
-    updateState({ receiveEmail: true }); // should update validation
+    updateStatus({ receiveEmail: true }); // should update validation
   }, [termValue]);
 
   return (

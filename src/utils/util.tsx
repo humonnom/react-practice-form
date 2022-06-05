@@ -1,4 +1,4 @@
-import { DataManage, StateManage } from "../interfaces/interface";
+import { InfosInterface } from "../interfaces/interface";
 
 export const STATE = Object.freeze({
   INIT: Symbol("init"),
@@ -20,16 +20,10 @@ export const TYPE = Object.freeze({
   REVEIVEEMAIL: Symbol("receive-email"),
 });
 
-export const stateReducer = (
-  state: StateManage,
+export const infosReducer = (
+  state: InfosInterface,
   nextState: any
-): StateManage => {
-  return {
-    ...state,
-    ...nextState,
-  };
-};
-export const dataReducer = (state: DataManage, nextState: any): DataManage => {
+): InfosInterface => {
   return {
     ...state,
     ...nextState,

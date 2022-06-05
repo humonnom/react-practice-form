@@ -2,7 +2,7 @@ import { useInput } from "../hooks/useInput";
 import { TYPE } from "../utils/util";
 import StateMessage from "../components/StateMessage";
 
-const InfosContainer = () => {
+const UserInfoContainer = ({ updateValue, updateStatus }: any) => {
   const { value: userNameValue, comp: userNameComp } = useInput({
     typeInApp: TYPE.NAME,
     id: "name",
@@ -68,4 +68,4 @@ const InfosContainer = () => {
     </>
   );
 };
-export default InfosContainer;
+export default UserInfoContainer;
