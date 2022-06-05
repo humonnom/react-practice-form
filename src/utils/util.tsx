@@ -29,3 +29,25 @@ export const infosReducer = (
     ...nextState,
   };
 };
+
+// for useInput
+
+export const isCheckbox = (type: string) => {
+  return type === "checkbox";
+};
+
+export const getInitialValue = (type: string): string | boolean => {
+  if (isCheckbox(type)) {
+    return false;
+  } else {
+    return "";
+  }
+};
+
+export const getValueByType = (type: string, event: any): string | boolean => {
+  if (isCheckbox(type)) {
+    return event.target.checked;
+  } else {
+    return event.target.value;
+  }
+};

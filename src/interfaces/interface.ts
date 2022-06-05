@@ -1,5 +1,5 @@
 interface Info {
-  value: string;
+  value: string | boolean;
   status: symbol;
 }
 interface InfosInterface {

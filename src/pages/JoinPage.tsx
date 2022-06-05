@@ -13,14 +13,14 @@ const JoinPage = () => {
     phoneNumber: { value: "", status: STATE.INIT },
     password: { value: "", status: STATE.INIT },
     friendName: { value: "", status: STATE.INIT },
-    term: { value: "", status: STATE.INIT },
-    privacyPolicy: { value: "", status: STATE.INIT },
-    receiveEmail: { value: "", status: STATE.INIT },
+    term: { value: false, status: STATE.INIT },
+    privacyPolicy: { value: false, status: STATE.INIT },
+    receiveEmail: { value: false, status: STATE.INIT },
   };
   const [infos, updateInfos] = useReducer(infosReducer, initialInfos);
 
   const updateValue = useCallback(
-    ({ key, value }: { key: string; value: any }) => {
+    ({ key, value }: { key: string; value: string | boolean }) => {
       const curInfo = infos[key as keyof InfosInterface];
       const newInfo = { ...curInfo, value };
       console.log(newInfo);
@@ -33,7 +33,6 @@ const JoinPage = () => {
     ({ key, status }: { key: string; status: symbol }) => {
       const curInfo = infos[key as keyof InfosInterface];
       const newInfo = { ...curInfo, status };
-      console.log(newInfo);
       updateInfos({ [key]: newInfo });
     },
     [infos, updateInfos]

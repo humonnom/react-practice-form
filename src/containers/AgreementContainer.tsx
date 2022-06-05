@@ -11,9 +11,15 @@ const AgreementContainer = ({ updateValue, updateStatus }: any) => {
     label: "약관동의",
     required: true,
   });
+
   useEffect(() => {
-    updateStatus({ term: STATE.OK }); // should update validation
+    console.log(termValue);
+    updateValue({ key: "term", value: termValue });
   }, [termValue]);
+
+  // useEffect(() => {
+  //   updateStatus({ term: STATE.OK }); // should update validation
+  // }, [termValue]);
 
   const { value: privacyPolicyValue, comp: privacyPolicyComp } = useInput({
     typeInApp: TYPE.PRIVACYPOLICY,
