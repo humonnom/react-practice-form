@@ -1,6 +1,7 @@
 import { useInput } from "../hooks/useInput";
 import { TYPE } from "../utils/util";
 import StateMessage from "../components/StateMessage";
+import { useEffect } from "react";
 
 const UserInfoContainer = ({ updateValue, updateStatus }: any) => {
   const { value: userNameValue, comp: userNameComp } = useInput({
@@ -10,6 +11,9 @@ const UserInfoContainer = ({ updateValue, updateStatus }: any) => {
     label: "유저네임",
     required: true,
   });
+  useEffect(() => {
+    updateValue({ key: "name", value: userNameValue });
+  }, [userNameValue]);
 
   const { value: emailValue, comp: emailComp } = useInput({
     typeInApp: TYPE.EMAIL,
@@ -18,6 +22,9 @@ const UserInfoContainer = ({ updateValue, updateStatus }: any) => {
     label: "이메일",
     required: true,
   });
+  useEffect(() => {
+    updateValue({ key: "email", value: emailValue });
+  }, [emailValue]);
 
   const { value: phoneNumberValue, comp: phoneNumberComp } = useInput({
     typeInApp: TYPE.PHONE,
@@ -26,6 +33,9 @@ const UserInfoContainer = ({ updateValue, updateStatus }: any) => {
     label: "전화번호",
     required: true,
   });
+  useEffect(() => {
+    updateValue({ key: "phoneNumber", value: phoneNumberValue });
+  }, [phoneNumberValue]);
 
   const { value: passwordValue, comp: passwordComp } = useInput({
     typeInApp: TYPE.PASSWORD,
@@ -35,6 +45,10 @@ const UserInfoContainer = ({ updateValue, updateStatus }: any) => {
     required: true,
   });
 
+  useEffect(() => {
+    updateValue({ key: "password", value: passwordValue });
+  }, [passwordValue]);
+
   const { value: passwordConfirmValue, comp: passwordConfirmComp } = useInput({
     typeInApp: TYPE.PASSWORD,
     id: "confirm",
@@ -42,6 +56,9 @@ const UserInfoContainer = ({ updateValue, updateStatus }: any) => {
     label: "비밀번호 확인",
     required: true,
   });
+  useEffect(() => {
+    updateValue({ key: "passwordComfirm", value: passwordConfirmValue });
+  }, [passwordConfirmValue]);
 
   const { value: friendNameValue, comp: friendNameComp } = useInput({
     typeInApp: TYPE.FRIENDNAME,
@@ -50,6 +67,9 @@ const UserInfoContainer = ({ updateValue, updateStatus }: any) => {
     label: "추천인 유저네임",
     required: false,
   });
+  useEffect(() => {
+    updateValue({ key: "friendName", value: friendNameValue });
+  }, [friendNameValue]);
 
   return (
     <>

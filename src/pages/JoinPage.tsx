@@ -12,6 +12,7 @@ const JoinPage = () => {
     email: { value: "", status: STATE.INIT },
     phoneNumber: { value: "", status: STATE.INIT },
     password: { value: "", status: STATE.INIT },
+    passwordConfirm: { value: "", status: STATE.INIT },
     friendName: { value: "", status: STATE.INIT },
     term: { value: false, status: STATE.INIT },
     privacyPolicy: { value: false, status: STATE.INIT },

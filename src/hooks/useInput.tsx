@@ -2,20 +2,17 @@ import { useMemo, useState } from "react";
 import Input from "../components/Input";
 
 export const useInput = ({
-  typeInApp: symbol, // typeInApp: use for validaion
+  typeInApp: symbol,
   id,
   type,
   label,
   required,
+  initState,
 }: any) => {
-  const [value, setValue] = useState("");
-  const onChangeValue = (event: any) => {
-    setValue(event.target.value);
-  };
-  const onChangeChecked = (event: any) => {
-    setValue(event.target.checked);
-  };
-  const init = () => setValue("");
+  const [value, setValue] = useState(initState ?? "");
+  const init = () => setValue(initState ?? "");
+  const onChangeValue = (event: any) => setValue(event.target.value);
+  const onChangeChecked = (event: any) => setValue(event.target.checked);
   const comp = useMemo(() => {
     return (
       <>

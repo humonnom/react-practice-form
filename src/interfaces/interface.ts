@@ -7,6 +7,7 @@ interface InfosInterface {
   email: Info;
   phoneNumber: Info;
   password: Info;
+  passwordConfirm: Info;
   friendName: Info;
   term: Info;
   privacyPolicy: Info;

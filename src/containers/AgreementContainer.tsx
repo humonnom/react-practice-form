@@ -10,11 +10,12 @@ const AgreementContainer = ({ updateValue, updateStatus }: any) => {
     type: "checkbox",
     label: "약관동의",
     required: true,
+    initState: false,
   });
 
-  // useEffect(() => {
-  //   // updateValue({ key: "term", value: termValue });
-  // }, [termValue]);
+  useEffect(() => {
+    updateValue({ key: "term", value: termValue });
+  }, [termValue]);
 
   // useEffect(() => {
   //   updateStatus({ term: STATE.OK }); // should update validation
@@ -26,10 +27,11 @@ const AgreementContainer = ({ updateValue, updateStatus }: any) => {
     type: "checkbox",
     label: "개인정보수집동의",
     required: true,
+    initState: false,
   });
-  // useEffect(() => {
-  //   updateStatus({ privacyPolicy: true }); // should update validation
-  // }, [termValue]);
+  useEffect(() => {
+    updateValue({ key: "privacyPolicy", value: privacyPolicyValue });
+  }, [privacyPolicyValue]);
 
   const { value: receiveEmailValue, comp: receiveEmailComp } = useInput({
     typeInApp: TYPE.REVEIVEEMAIL,
@@ -37,10 +39,11 @@ const AgreementContainer = ({ updateValue, updateStatus }: any) => {
     type: "checkbox",
     label: "메일수신동의",
     required: false,
+    initState: false,
   });
-  // useEffect(() => {
-  //   updateStatus({ receiveEmail: true }); // should update validation
-  // }, [termValue]);
+  useEffect(() => {
+    updateValue({ key: "receiveEmail", value: receiveEmailValue });
+  }, [receiveEmailValue]);
 
   return (
     <>
