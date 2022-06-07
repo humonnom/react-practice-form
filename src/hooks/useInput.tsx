@@ -1,4 +1,5 @@
 import { useMemo, useState } from "react";
+import Input from "../components/Input";
 
 export const useInput = ({
   typeInApp: symbol, // typeInApp: use for validaion
@@ -8,8 +9,11 @@ export const useInput = ({
   required,
 }: any) => {
   const [value, setValue] = useState("");
-  const onChange = (event: any) => {
+  const onChangeValue = (event: any) => {
     setValue(event.target.value);
+  };
+  const onChangeChecked = (event: any) => {
+    setValue(event.target.checked);
   };
   const init = () => setValue("");
   const comp = useMemo(() => {
@@ -19,7 +23,13 @@ export const useInput = ({
           {label}
           {required ? "(*필수)" : ""}
         </p>
-        <input type={type} id={id} value={value} onChange={onChange} />
+        <Input
+          type={type}
+          id={id}
+          value={value}
+          onChangeValue={onChangeValue}
+          onChangeChecked={onChangeChecked}
+        />
       </>
     );
   }, [value]);

@@ -23,7 +23,6 @@ const JoinPage = () => {
     ({ key, value }: { key: string; value: string | boolean }) => {
       const curInfo = infos[key as keyof InfosInterface];
       const newInfo = { ...curInfo, value };
-      console.log(newInfo);
       updateInfos({ [key]: newInfo });
     },
     [infos, updateInfos]

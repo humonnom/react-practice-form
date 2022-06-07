@@ -12,10 +12,9 @@ const AgreementContainer = ({ updateValue, updateStatus }: any) => {
     required: true,
   });
 
-  useEffect(() => {
-    console.log(termValue);
-    updateValue({ key: "term", value: termValue });
-  }, [termValue]);
+  // useEffect(() => {
+  //   // updateValue({ key: "term", value: termValue });
+  // }, [termValue]);
 
   // useEffect(() => {
   //   updateStatus({ term: STATE.OK }); // should update validation
@@ -28,9 +27,9 @@ const AgreementContainer = ({ updateValue, updateStatus }: any) => {
     label: "개인정보수집동의",
     required: true,
   });
-  useEffect(() => {
-    updateStatus({ privacyPolicy: true }); // should update validation
-  }, [termValue]);
+  // useEffect(() => {
+  //   updateStatus({ privacyPolicy: true }); // should update validation
+  // }, [termValue]);
 
   const { value: receiveEmailValue, comp: receiveEmailComp } = useInput({
     typeInApp: TYPE.REVEIVEEMAIL,
@@ -39,9 +38,9 @@ const AgreementContainer = ({ updateValue, updateStatus }: any) => {
     label: "메일수신동의",
     required: false,
   });
-  useEffect(() => {
-    updateStatus({ receiveEmail: true }); // should update validation
-  }, [termValue]);
+  // useEffect(() => {
+  //   updateStatus({ receiveEmail: true }); // should update validation
+  // }, [termValue]);
 
   return (
     <>
