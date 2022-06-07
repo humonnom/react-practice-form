@@ -54,8 +54,6 @@
 ### useReducer 사용하기
 * 이전 프로젝트에서 useState를 많이 사용해서 가독성이 좋지 않았음
 
-### symbol을 사용하기
-
 ```js
   const [field, setField] = useState([]);
   const [showPassword, setShowPassword] = useState(false);
@@ -65,8 +63,14 @@
   const [certState, setCertState] = useState(false);
 
 ```
-
 * Solution: 따라서 이번에는 useReducer를 사용해봄 
+
+### symbol을 사용하기
+* type 관리에 symbol과 freeze를 사용함
+* enum처럼 동작함
+* TS에서는 enum을 쓸 수 있도록 구현이 되어있지만 직접 구현한 것을 사용한 이유
+   1. symbol과 freeze를 사용한 enum을 구현/사용하며 공부할 목적
+   2. 내부적으로 즉시실행함수를 사용하므로 트리쉐이킹 이슈가 있기 때문에  
 
 # 시스템 구성도(추후 업데이트 예정)
 ## 사용한 기술과 사용한 이유
