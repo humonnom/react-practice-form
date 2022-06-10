@@ -54,3 +54,7 @@ export const validateCheck = (isRequired: boolean, value: boolean) => {
   }
   return STATE.REAUIRED;
 };
+
+export const validateName = (isRequired: boolean, value: string) => {
+  return STATE.OK;
+};

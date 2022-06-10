@@ -1,12 +1,26 @@
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import useChecks from "../hooks/useChecks";
-import { validateCheck } from "../utils/util";
+import useInputs from "../hooks/useInputs";
+import { validateCheck, validateName } from "../utils/util";
 
 const JoinPage = () => {
   const navigate = useNavigate();
 
-  const [isAllchecked, renderChecks] = useChecks({
+  const [inputs, isAllOk, renderInputs] = useInputs({
+    initialInputs: {
+      name: {
+        id: "name",
+        type: "text",
+        label: "이름",
+        value: "",
+        required: true,
+        validate: validateName,
+      },
+    },
+  });
+
+  const [checks, isAllchecked, renderChecks] = useChecks({
     initialChecks: {
       term: {
         id: "term",
@@ -38,8 +52,6 @@ const JoinPage = () => {
     // case: fail =>
   };
 
-  const isAllOk = true;
-
   const submittable = useMemo(() => {
     return isAllchecked && isAllOk;
   }, [isAllchecked, isAllOk]);
@@ -49,9 +61,14 @@ const JoinPage = () => {
     else return "다시 한번 확인해주세요";
   }, [submittable]);
 
+  useEffect(() => {
+    console.log(inputs);
+  }, [inputs]);
+
   return (
     <>
       <form>
+        {renderInputs()}
         {renderChecks()}
         <button disabled={!submittable} type="button" onClick={handleSubmit}>
           {submitButtonMessege}
