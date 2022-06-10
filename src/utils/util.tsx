@@ -1,5 +1,3 @@
-import { InfosInterface } from "../interfaces/interface";
-
 export const STATE = Object.freeze({
   INIT: Symbol("init"),
   EMPTY: Symbol("empty"),
@@ -7,6 +5,7 @@ export const STATE = Object.freeze({
   MALFORMED: Symbol("malformed"),
   OVERLAP: Symbol("overlap"),
   OK: Symbol("ok"),
+  REAUIRED: Symbol("required"),
 });
 
 export const TYPE = Object.freeze({
@@ -20,34 +19,38 @@ export const TYPE = Object.freeze({
   REVEIVEEMAIL: Symbol("receive-email"),
 });
 
-export const infosReducer = (
-  state: InfosInterface,
-  nextState: any
-): InfosInterface => {
+export const reducer = (state: any, nextState: any): any => {
   return {
     ...state,
     ...nextState,
   };
 };
 
-// for useInput
+export const isNotOK = (state: symbol) => state !== STATE.OK;
+export const isTrue = (value: boolean) => value === true;
+export const isFalse = (value: boolean) => value === false;
 
-export const isCheckbox = (type: string) => {
-  return type === "checkbox";
+const getMessageByState = (state: boolean) => {
+  return "에러 메세지";
 };
 
-export const getInitialValue = (type: string): string | boolean => {
-  if (isCheckbox(type)) {
-    return false;
-  } else {
-    return "";
-  }
+export const renderWithLabel = (
+  label: string,
+  renderer: () => JSX.Element,
+  state: boolean
+) => {
+  return (
+    <div>
+      <p>{label}</p>
+      {renderer()}
+      <p>{getMessageByState(state)}</p>
+    </div>
+  );
 };
 
-export const getValueByType = (type: string, event: any): string | boolean => {
-  if (isCheckbox(type)) {
-    return event.target.checked;
-  } else {
-    return event.target.value;
+export const validateCheck = (isRequired: boolean, value: boolean) => {
+  if (isFalse(isRequired) || (isTrue(isRequired) && isTrue(value))) {
+    return STATE.OK;
   }
+  return STATE.REAUIRED;
 };

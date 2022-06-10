@@ -1,17 +1,29 @@
-interface Info {
-  value: string | boolean;
+interface UserInfo {
+  value: string;
   status: symbol;
 }
-interface InfosInterface {
-  name: Info;
-  email: Info;
-  phoneNumber: Info;
-  password: Info;
-  passwordConfirm: Info;
-  friendName: Info;
-  term: Info;
-  privacyPolicy: Info;
-  receiveEmail: Info;
+
+interface UserInfosInterface {
+  name: UserInfo;
+  email: UserInfo;
+  phoneNumber: UserInfo;
+  password: UserInfo;
+  passwordConfirm: UserInfo;
+  friendName: UserInfo;
 }
 
-export type { Info, InfosInterface };
+interface AgreementInfo {
+  value: boolean;
+  status: symbol;
+}
+interface AgreementInfosInterface {
+  term: AgreementInfo;
+  privacyPolicy: AgreementInfo;
+  receiveEmail: AgreementInfo;
+}
+export type {
+  UserInfo,
+  UserInfosInterface,
+  AgreementInfo,
+  AgreementInfosInterface,
+};

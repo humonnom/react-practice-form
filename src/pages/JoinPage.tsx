@@ -1,46 +1,36 @@
-import { useCallback, useEffect, useMemo, useReducer } from "react";
+import { useMemo } from "react";
 import { useNavigate } from "react-router-dom";
-import { InfosInterface } from "../interfaces/interface";
-import { STATE, infosReducer } from "../utils/util";
-import AgreementContainer from "../containers/AgreementContainer";
-import UserInfoContainer from "../containers/UserInfosContainer";
+import useChecks from "../hooks/useChecks";
+import { validateCheck } from "../utils/util";
 
 const JoinPage = () => {
   const navigate = useNavigate();
-  const initialInfos: InfosInterface = {
-    name: { value: "", status: STATE.INIT },
-    email: { value: "", status: STATE.INIT },
-    phoneNumber: { value: "", status: STATE.INIT },
-    password: { value: "", status: STATE.INIT },
-    passwordConfirm: { value: "", status: STATE.INIT },
-    friendName: { value: "", status: STATE.INIT },
-    term: { value: false, status: STATE.INIT },
-    privacyPolicy: { value: false, status: STATE.INIT },
-    receiveEmail: { value: false, status: STATE.INIT },
-  };
-  const [infos, updateInfos] = useReducer(infosReducer, initialInfos);
 
-  const updateValue = useCallback(
-    ({ key, value }: { key: string; value: string | boolean }) => {
-      const curInfo = infos[key as keyof InfosInterface];
-      const newInfo = { ...curInfo, value };
-      updateInfos({ [key]: newInfo });
+  const [isAllchecked, renderChecks] = useChecks({
+    initialChecks: {
+      term: {
+        id: "term",
+        label: "약관 동의",
+        checked: false,
+        required: true,
+        validate: validateCheck,
+      },
+      privacyPolicy: {
+        id: "privacy-policy",
+        label: "개인정보 수집 동의",
+        checked: false,
+        required: true,
+        validate: validateCheck,
+      },
+      receiveEmail: {
+        id: "receive-email",
+        label: "이메일 수신 동의",
+        checked: false,
+        required: false,
+        validate: validateCheck,
+      },
     },
-    [infos, updateInfos]
-  );
-
-  const updateStatus = useCallback(
-    ({ key, status }: { key: string; status: symbol }) => {
-      const curInfo = infos[key as keyof InfosInterface];
-      const newInfo = { ...curInfo, status };
-      updateInfos({ [key]: newInfo });
-    },
-    [infos, updateInfos]
-  );
-
-  useEffect(() => {
-    console.log(infos);
-  }, [infos]);
+  });
 
   const handleSubmit = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
@@ -48,29 +38,23 @@ const JoinPage = () => {
     // case: fail =>
   };
 
-  const isNotOK = (state: symbol) => state !== STATE.OK;
+  const isAllOk = true;
 
   const submittable = useMemo(() => {
-    for (const key in infos) {
-      const curStatus = infos[key as keyof InfosInterface].status;
-      if (isNotOK(curStatus)) return false;
-    }
-    return true;
-  }, [infos]);
+    return isAllchecked && isAllOk;
+  }, [isAllchecked, isAllOk]);
+
+  const submitButtonMessege = useMemo(() => {
+    if (submittable) return "최종 제출하기";
+    else return "다시 한번 확인해주세요";
+  }, [submittable]);
 
   return (
     <>
       <form>
-        <UserInfoContainer
-          updateValue={updateValue}
-          updateStatus={updateStatus}
-        />
-        <AgreementContainer
-          updateValue={updateValue}
-          updateStatus={updateStatus}
-        />
+        {renderChecks()}
         <button disabled={!submittable} type="button" onClick={handleSubmit}>
-          {submittable ? "제출하기" : "필수 항목을 모두 채워주세요"}
+          {submitButtonMessege}
         </button>
       </form>
     </>
