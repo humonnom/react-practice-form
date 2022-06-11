@@ -25,13 +25,12 @@ function useInputs({ initialInputs }: any): UseChecksResult {
   }, [inputs]);
 
   const renderInputs = useCallback(() => {
-    console.log("rerender");
     let inputComps = [];
     for (const key in inputs) {
       const { id, label, required, value } = inputs[key];
       const labelWithAster = label + (required ? "*" : "");
       inputComps.push(
-        <div key={Math.random()}>
+        <div>
           <>{labelWithAster}</>
           <input
             type="text"

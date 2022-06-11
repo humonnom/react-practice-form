@@ -1,4 +1,5 @@
 import React, { useCallback, useMemo, useReducer } from "react";
+import Checks from "../components/Checks";
 import { isNotOK, reducer } from "../utils/util";
 type UseChecksResult = [{}, boolean, () => JSX.Element];
 
@@ -41,7 +42,7 @@ function useChecks({ initialChecks }: any): UseChecksResult {
         </div>
       );
     }
-    return <>{checkComps}</>;
+    return <Checks inside={checkComps} />;
   }, [checks, setChecks]);
 
   return [checks, isAllChecked, renderChecks];

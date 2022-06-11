@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from "react";
+import { useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import useChecks from "../hooks/useChecks";
 import useInputs from "../hooks/useInputs";
@@ -13,6 +13,14 @@ const JoinPage = () => {
         id: "name",
         type: "text",
         label: "이름",
+        value: "",
+        required: true,
+        validate: validateName,
+      },
+      password: {
+        id: "password",
+        type: "password",
+        label: "비밀번호",
         value: "",
         required: true,
         validate: validateName,
@@ -58,12 +66,8 @@ const JoinPage = () => {
 
   const submitButtonMessege = useMemo(() => {
     if (submittable) return "최종 제출하기";
-    else return "다시 한번 확인해주세요";
+    else return "입력을 다시 한번 확인해주세요";
   }, [submittable]);
-
-  useEffect(() => {
-    console.log(inputs);
-  }, [inputs]);
 
   return (
     <>

@@ -7,9 +7,6 @@ const StateMessage = ({ type, value, update }: any) => {
   };
 
   const stateMessage = "상태 메세지";
-  console.log(stateMessage);
-  // should update data & state
-
   return (
     <>
       <p>{""}</p>
