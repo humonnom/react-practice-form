@@ -1,8 +1,15 @@
 import { useCallback, useMemo } from "react";
-import { useNavigate } from "react-router-dom";
 import useChecks from "../hooks/useChecks";
 import useInputs from "../hooks/useInputs";
-import { validateCheck, validateName } from "../utils/util";
+import { useNavigate } from "react-router-dom";
+import {
+  validateCheck,
+  validateEmail,
+  validateName,
+  validatePassword,
+  validatePhone,
+  validateReferralName,
+} from "../utils/validate";
 
 const JoinPage = () => {
   const navigate = useNavigate();
@@ -23,7 +30,7 @@ const JoinPage = () => {
         label: "비밀번호",
         value: "",
         required: true,
-        validate: validateName,
+        validate: validatePassword,
       },
       email: {
         id: "email",
@@ -31,7 +38,7 @@ const JoinPage = () => {
         label: "이메일",
         value: "",
         required: true,
-        validate: validateName,
+        validate: validateEmail,
       },
       phone: {
         id: "phone",
@@ -39,7 +46,7 @@ const JoinPage = () => {
         label: "전화번호",
         value: "",
         required: true,
-        validate: validateName,
+        validate: validatePhone,
       },
       referral: {
         id: "referral-name",
@@ -47,7 +54,7 @@ const JoinPage = () => {
         label: "추천인 유저네임",
         value: "",
         required: false,
-        validate: validateName,
+        validate: validateReferralName,
       },
     },
   });

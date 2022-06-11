@@ -29,32 +29,4 @@ export const reducer = (state: any, nextState: any): any => {
 export const isNotOK = (state: symbol) => state !== STATE.OK;
 export const isTrue = (value: boolean) => value === true;
 export const isFalse = (value: boolean) => value === false;
-
-const getMessageByState = (state: boolean) => {
-  return "에러 메세지";
-};
-
-export const renderWithLabel = (
-  label: string,
-  renderer: () => JSX.Element,
-  state: boolean
-) => {
-  return (
-    <div>
-      <p>{label}</p>
-      {renderer()}
-      <p>{getMessageByState(state)}</p>
-    </div>
-  );
-};
-
-export const validateCheck = (isRequired: boolean, value: boolean) => {
-  if (isFalse(isRequired) || (isTrue(isRequired) && isTrue(value))) {
-    return STATE.OK;
-  }
-  return STATE.REAUIRED;
-};
-
-export const validateName = (isRequired: boolean, value: string) => {
-  return STATE.OK;
-};
+export const isEmptyString = (value: string) => value.length === 0;

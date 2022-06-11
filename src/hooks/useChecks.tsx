@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useReducer } from "react";
+import { useCallback, useMemo, useReducer } from "react";
 import Checks from "../components/Checks";
 import { isNotOK, reducer } from "../utils/util";
 type UseChecksResult = [{}, boolean, () => JSX.Element];
