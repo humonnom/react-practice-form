@@ -1,20 +1,25 @@
 import { useMemo } from "react";
-import Check from "./Check";
+import Input from "./Input";
 
-type ChecksProps = {
+type InputsProps = {
   infoList: any;
   onChange: (arg1: any, arg2: string) => void;
 };
 
-function Checks({ infoList, onChange }: ChecksProps) {
+function Inputs({ infoList, onChange }: InputsProps) {
   const Comps = useMemo(() => {
     return Object.keys(infoList).map((key) => {
-      const { id, label, required, checked } = infoList[key];
+      const { id, label, required, value, type } = infoList[key];
       const labelWithAster = label + (required ? "*" : "");
       return (
         <div key={id}>
           <>{labelWithAster}</>
-          <Check id={id} checked={checked} onChange={(e) => onChange(e, key)} />
+          <Input
+            type={type}
+            id={id}
+            value={value}
+            onChange={(e) => onChange(e, key)}
+          />
         </div>
       );
     });
@@ -23,4 +28,4 @@ function Checks({ infoList, onChange }: ChecksProps) {
   return <div>{Comps}</div>;
 }
 
-export default Checks;
+export default Inputs;

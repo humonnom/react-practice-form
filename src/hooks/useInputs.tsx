@@ -1,4 +1,5 @@
 import { useCallback, useMemo, useReducer } from "react";
+import Inputs from "../components/Inputs";
 import { isNotOK, reducer } from "../utils/util";
 type UseChecksResult = [{}, boolean, () => JSX.Element];
 
@@ -25,23 +26,7 @@ function useInputs({ initialInputs }: any): UseChecksResult {
   }, [inputs]);
 
   const renderInputs = useCallback(() => {
-    let inputComps = [];
-    for (const key in inputs) {
-      const { id, type, label, required, value } = inputs[key];
-      const labelWithAster = label + (required ? "*" : "");
-      inputComps.push(
-        <div>
-          <>{labelWithAster}</>
-          <input
-            type={type}
-            id={id}
-            value={value}
-            onChange={(e) => onChange(e, key)}
-          />
-        </div>
-      );
-    }
-    return <>{inputComps}</>;
+    return <Inputs infoList={inputs} onChange={onChange} />;
   }, [inputs, setInputs]);
 
   return [inputs, isAllOk, renderInputs];
