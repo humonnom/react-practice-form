@@ -1,7 +1,7 @@
 import useChecks from "../hooks/useChecks";
 import { validateCheck } from "../utils/validate";
 
-function CheckboxContainer({ setIsOk }: any): JSX.Element {
+function CheckboxContainer({ update }: any): JSX.Element {
   const [checks, isAllchecked, renderChecks] = useChecks({
     initialChecks: {
       term: {

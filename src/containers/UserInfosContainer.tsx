@@ -7,7 +7,7 @@ import {
   validateReferralName,
 } from "../utils/validate";
 
-function UserInfosContainer({ setIsOk }: any): JSX.Element {
+function UserInfosContainer({ update }: any): JSX.Element {
   const [inputs, isAllOk, renderInputs] = useInputs({
     initialInputs: {
       name: {

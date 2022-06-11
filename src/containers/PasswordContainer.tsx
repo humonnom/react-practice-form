@@ -3,14 +3,14 @@ import useInputs from "../hooks/useInputs";
 import { STATE, toggle } from "../utils/util";
 import { validatePassword } from "../utils/validate";
 
-function PasswordContainer({ setIsOk }: any): JSX.Element {
+function PasswordContainer({ update }: any): JSX.Element {
   const [viewPassword, toggleViewPassword] = useReducer(toggle, false);
   const passwordToggleButtonMessage = useMemo(() => {
     console.log(viewPassword);
     return viewPassword ? "비밀번호 숨기기" : "비밀번호 보이기";
   }, [viewPassword]);
 
-  const [inputs, isAllOk, renderPasswordInputs] = useInputs({
+  const [passwords, passwordIsAllOk, renderComp] = useInputs({
     initialInputs: {
       password: {
         id: "password",
@@ -38,7 +38,7 @@ function PasswordContainer({ setIsOk }: any): JSX.Element {
       <button type="button" onClick={toggleViewPassword}>
         {passwordToggleButtonMessage}
       </button>
-      {renderPasswordInputs()}
+      {renderComp()}
     </div>
   );
 }

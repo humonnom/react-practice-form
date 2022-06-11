@@ -1,28 +1,42 @@
-import { useCallback, useMemo } from "react";
+import { useCallback, useMemo, useReducer } from "react";
 import { useNavigate } from "react-router-dom";
 import PasswordContainer from "../containers/PasswordContainer";
 import UserInfosContainer from "../containers/UserInfosContainer";
 import CheckboxContainer from "../containers/CheckboxContainer";
+import { reducer } from "../utils/util";
+
+export type Data = { isAllOk: boolean; allValues: any };
 
 const JoinPage = () => {
   const navigate = useNavigate();
+  const [datas, updateDatas] = useReducer(reducer, {
+    userInfos: { isAllOk: false, allValues: {} },
+    passwords: { isAllOk: false, allValues: {} },
+    checks: { isAllOk: false, allValues: {} },
+  });
+
+  const updateData = useCallback(
+    (key: string, newData: Data) => {
+      updateDatas({ ...datas, [key]: newData });
+    },
+    [datas, updateDatas]
+  );
 
   // TODO comfirm page로 데이터 보내기
+  // state는 제외하고 values만 보내기
+  // key-value쌍으로 송신하도록 평탄화 필요
   const handleSubmit = useCallback(
     (event: React.MouseEvent<HTMLButtonElement>) => {
       event.preventDefault();
       navigate("/confirm", {
-        state: {
-          userInfos: "infos key-value object",
-          passwords: "passwords key-value object",
-          checks: "checks key-value object",
-        },
+        state: datas,
       });
     },
-    []
+    [datas]
   );
 
   const submittable = useMemo(() => {
+    // datas의 각 data의 isAllOk가 모두 true면 data 송신 가능
     return true;
   }, []);
 
@@ -35,19 +49,13 @@ const JoinPage = () => {
     <>
       <form>
         <UserInfosContainer
-          setIsOk={() => {
-            console.log("userInfo is all ok");
-          }}
+          update={(newData: Data) => updateData("userInfos", newData)}
         />
         <PasswordContainer
-          setIsOk={() => {
-            console.log("password is all ok");
-          }}
+          update={(newData: Data) => updateData("passwords", newData)}
         />
         <CheckboxContainer
-          setIsOk={() => {
-            console.log("checks is all ok");
-          }}
+          update={(newData: Data) => updateData("checks", newData)}
         />
         <button disabled={!submittable} type="button" onClick={handleSubmit}>
           {submitButtonMessege}
