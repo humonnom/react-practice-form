@@ -10,6 +10,7 @@ import {
   validatePhone,
   validateReferralName,
 } from "../utils/validate";
+import { STATE } from "../utils/util";
 
 const JoinPage = () => {
   const navigate = useNavigate();
@@ -22,6 +23,7 @@ const JoinPage = () => {
         label: "유저네임",
         value: "",
         required: true,
+        state: STATE.INIT,
         validate: validateName,
       },
       password: {
@@ -30,6 +32,7 @@ const JoinPage = () => {
         label: "비밀번호",
         value: "",
         required: true,
+        state: STATE.INIT,
         validate: validatePassword,
       },
       email: {
@@ -38,6 +41,7 @@ const JoinPage = () => {
         label: "이메일",
         value: "",
         required: true,
+        state: STATE.INIT,
         validate: validateEmail,
       },
       phone: {
@@ -46,6 +50,7 @@ const JoinPage = () => {
         label: "전화번호",
         value: "",
         required: true,
+        state: STATE.INIT,
         validate: validatePhone,
       },
       referral: {
@@ -54,6 +59,7 @@ const JoinPage = () => {
         label: "추천인 유저네임",
         value: "",
         required: false,
+        state: STATE.INIT,
         validate: validateReferralName,
       },
     },
@@ -88,12 +94,10 @@ const JoinPage = () => {
   const handleSubmit = useCallback(
     (event: React.MouseEvent<HTMLButtonElement>) => {
       event.preventDefault();
-      // case: success
-      console.log(inputs, checks);
       navigate("/confirm", {
         state: {
-          inputs: "?",
-          checks: "?",
+          inputs: "inputs key-value object", // should update
+          checks: "checks key-value object", // should update
         },
       });
     },

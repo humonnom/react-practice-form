@@ -1,6 +1,6 @@
-import { useCallback, useMemo, useReducer } from "react";
+import { useCallback, useEffect, useMemo, useReducer } from "react";
 import Inputs from "../components/Inputs";
-import { isNotOK, reducer } from "../utils/util";
+import { debounce, isNotOK, reducer } from "../utils/util";
 type UseChecksResult = [{}, boolean, () => JSX.Element];
 
 function useInputs({ initialInputs }: any): UseChecksResult {
@@ -8,19 +8,27 @@ function useInputs({ initialInputs }: any): UseChecksResult {
   const onChange = useCallback(
     (event: any, key: string) => {
       const targetInputInfo = inputs[key];
+      const { required, validate } = targetInputInfo;
+      const newValue = event.target.value;
+      const newState = validate(required, newValue);
       const newInputInfo = {
         ...targetInputInfo,
-        value: event.target.value,
+        value: newValue,
+        state: newState,
       };
       setInputs({ [key]: newInputInfo });
     },
     [inputs, setInputs]
   );
 
+  useEffect(() => {
+    console.log(inputs["name"].value, inputs["name"].state);
+  }, [inputs]);
+
   const isAllOk = useMemo(() => {
     for (const key in inputs) {
-      const { required, validate, value } = inputs[key];
-      if (isNotOK(validate(required, value))) return false;
+      const { state } = inputs[key];
+      if (isNotOK(state)) return false;
     }
     return true;
   }, [inputs]);
