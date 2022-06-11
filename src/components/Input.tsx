@@ -53,6 +53,7 @@ type InputProps = {
 
 function Input({ id, type, value, onChange }: InputProps) {
   const Comps = useMemo(() => {
+    console.log(type);
     return (
       <input
         type={type}

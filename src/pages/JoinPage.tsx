@@ -1,112 +1,30 @@
 import { useCallback, useMemo } from "react";
-import useChecks from "../hooks/useChecks";
-import useInputs from "../hooks/useInputs";
 import { useNavigate } from "react-router-dom";
-import {
-  validateCheck,
-  validateEmail,
-  validateName,
-  validatePassword,
-  validatePhone,
-  validateReferralName,
-} from "../utils/validate";
-import { STATE } from "../utils/util";
+import PasswordContainer from "../containers/PasswordContainer";
+import UserInfosContainer from "../containers/UserInfosContainer";
+import CheckboxContainer from "../containers/CheckboxContainer";
 
 const JoinPage = () => {
   const navigate = useNavigate();
 
-  const [inputs, isAllOk, renderInputs] = useInputs({
-    initialInputs: {
-      name: {
-        id: "name",
-        type: "text",
-        label: "유저네임",
-        value: "",
-        required: true,
-        state: STATE.INIT,
-        validate: validateName,
-      },
-      password: {
-        id: "password",
-        type: "password",
-        label: "비밀번호",
-        value: "",
-        required: true,
-        state: STATE.INIT,
-        validate: validatePassword,
-      },
-      email: {
-        id: "email",
-        type: "email",
-        label: "이메일",
-        value: "",
-        required: true,
-        state: STATE.INIT,
-        validate: validateEmail,
-      },
-      phone: {
-        id: "phone",
-        type: "phone",
-        label: "전화번호",
-        value: "",
-        required: true,
-        state: STATE.INIT,
-        validate: validatePhone,
-      },
-      referral: {
-        id: "referral-name",
-        type: "text",
-        label: "추천인 유저네임",
-        value: "",
-        required: false,
-        state: STATE.INIT,
-        validate: validateReferralName,
-      },
-    },
-  });
-
-  const [checks, isAllchecked, renderChecks] = useChecks({
-    initialChecks: {
-      term: {
-        id: "term",
-        label: "약관 동의",
-        checked: false,
-        required: true,
-        validate: validateCheck,
-      },
-      privacyPolicy: {
-        id: "privacy-policy",
-        label: "개인정보 수집 동의",
-        checked: false,
-        required: true,
-        validate: validateCheck,
-      },
-      receiveEmail: {
-        id: "receive-email",
-        label: "이메일 수신 동의",
-        checked: false,
-        required: false,
-        validate: validateCheck,
-      },
-    },
-  });
-
+  // TODO comfirm page로 데이터 보내기
   const handleSubmit = useCallback(
     (event: React.MouseEvent<HTMLButtonElement>) => {
       event.preventDefault();
       navigate("/confirm", {
         state: {
-          inputs: "inputs key-value object", // should update
-          checks: "checks key-value object", // should update
+          userInfos: "infos key-value object",
+          passwords: "passwords key-value object",
+          checks: "checks key-value object",
         },
       });
     },
-    [inputs, checks]
+    []
   );
 
   const submittable = useMemo(() => {
-    return isAllchecked && isAllOk;
-  }, [isAllchecked, isAllOk]);
+    return true;
+  }, []);
 
   const submitButtonMessege = useMemo(() => {
     if (submittable) return "최종 제출하기";
@@ -116,8 +34,21 @@ const JoinPage = () => {
   return (
     <>
       <form>
-        {renderInputs()}
-        {renderChecks()}
+        <UserInfosContainer
+          setIsOk={() => {
+            console.log("userInfo is all ok");
+          }}
+        />
+        <PasswordContainer
+          setIsOk={() => {
+            console.log("password is all ok");
+          }}
+        />
+        <CheckboxContainer
+          setIsOk={() => {
+            console.log("checks is all ok");
+          }}
+        />
         <button disabled={!submittable} type="button" onClick={handleSubmit}>
           {submitButtonMessege}
         </button>

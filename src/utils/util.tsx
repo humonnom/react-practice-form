@@ -27,6 +27,10 @@ export const reducer = (state: any, nextState: any): any => {
   };
 };
 
+export const toggle = (state: boolean): boolean => {
+  return !state;
+};
+
 export const isNotOK = (state: symbol) => state !== STATE.OK;
 export const isTrue = (value: boolean) => value === true;
 export const isFalse = (value: boolean) => value === false;
