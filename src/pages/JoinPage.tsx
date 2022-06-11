@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useCallback, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import useChecks from "../hooks/useChecks";
 import useInputs from "../hooks/useInputs";
@@ -12,7 +12,7 @@ const JoinPage = () => {
       name: {
         id: "name",
         type: "text",
-        label: "이름",
+        label: "유저네임",
         value: "",
         required: true,
         validate: validateName,
@@ -23,6 +23,30 @@ const JoinPage = () => {
         label: "비밀번호",
         value: "",
         required: true,
+        validate: validateName,
+      },
+      email: {
+        id: "email",
+        type: "email",
+        label: "이메일",
+        value: "",
+        required: true,
+        validate: validateName,
+      },
+      phone: {
+        id: "phone",
+        type: "phone",
+        label: "전화번호",
+        value: "",
+        required: true,
+        validate: validateName,
+      },
+      referral: {
+        id: "referral-name",
+        type: "text",
+        label: "추천인 유저네임",
+        value: "",
+        required: false,
         validate: validateName,
       },
     },
@@ -54,11 +78,20 @@ const JoinPage = () => {
     },
   });
 
-  const handleSubmit = (event: React.MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault();
-    navigate("/confirm"); // case: success
-    // case: fail =>
-  };
+  const handleSubmit = useCallback(
+    (event: React.MouseEvent<HTMLButtonElement>) => {
+      event.preventDefault();
+      // case: success
+      console.log(inputs, checks);
+      navigate("/confirm", {
+        state: {
+          inputs: "?",
+          checks: "?",
+        },
+      });
+    },
+    [inputs, checks]
+  );
 
   const submittable = useMemo(() => {
     return isAllchecked && isAllOk;

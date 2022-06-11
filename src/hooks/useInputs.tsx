@@ -27,13 +27,13 @@ function useInputs({ initialInputs }: any): UseChecksResult {
   const renderInputs = useCallback(() => {
     let inputComps = [];
     for (const key in inputs) {
-      const { id, label, required, value } = inputs[key];
+      const { id, type, label, required, value } = inputs[key];
       const labelWithAster = label + (required ? "*" : "");
       inputComps.push(
         <div>
           <>{labelWithAster}</>
           <input
-            type="text"
+            type={type}
             id={id}
             value={value}
             onChange={(e) => onChange(e, key)}
