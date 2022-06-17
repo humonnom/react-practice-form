@@ -5,7 +5,7 @@ import { FormContext } from "../components/SimpleForm";
 interface UseInputProps extends Pick<InputProps, "source" | "validate"> {}
 
 function useInput(props: UseInputProps) {
-  const { setValues, values, setError } = useContext(FormContext);
+  const { setValues, values, setSubmittable } = useContext(FormContext);
   const error = React.useMemo(() => {
     let message = "";
     props.validate?.forEach((f) => {
@@ -15,7 +15,7 @@ function useInput(props: UseInputProps) {
     return message;
   }, [props.validate, values[props.source]]);
   useEffect(() => {
-    setError(!!error);
+    setSubmittable(!error);
   }, [error]);
   const onChange = React.useCallback(
     (v: string | number | boolean) => {
