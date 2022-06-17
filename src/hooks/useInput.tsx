@@ -8,14 +8,14 @@ function useInput(props: UseInputProps) {
   const { setValues, values } = useContext(FormContext);
   const error = React.useMemo(() => {
     let message = "";
-    props.validate.forEach((f) => {
+    props.validate?.forEach((f) => {
       if (message) return false;
       message = f(values[props.source]);
     });
     return message;
   }, [props.validate, values[props.source]]);
   const onChange = React.useCallback(
-    (v: string | number) => {
+    (v: string | number | boolean) => {
       setValues({
         ...values,
         [props.source]: v,

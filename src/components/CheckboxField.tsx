@@ -5,8 +5,6 @@ import useInput from "../hooks/useInput";
 const CheckboxField: FunctionComponent<InputProps> = ({
   source,
   label,
-  placeholder,
-  type,
   validate,
 }) => {
   const { value, onChange, error } = useInput({ source, validate });
@@ -15,11 +13,10 @@ const CheckboxField: FunctionComponent<InputProps> = ({
       <div style={{ display: "flex", gridGap: "8px" }}>
         <label htmlFor={source}>{label}</label>
         <input
-          value={value ?? ""}
-          onChange={(e) => onChange(e.target.value)}
+          checked={value ?? false}
+          onChange={(e) => onChange(e.target.checked)}
           name={source}
-          type={type}
-          placeholder={placeholder}
+          type="checkbox"
         />
       </div>
     </div>
