@@ -22,6 +22,7 @@ const TextField: FunctionComponent<InputProps> = ({
           placeholder={placeholder}
         />
       </div>
+      <p>{error}</p>
     </div>
   );
 };

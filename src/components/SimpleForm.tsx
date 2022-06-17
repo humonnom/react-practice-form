@@ -3,12 +3,15 @@ import React, { createContext, PropsWithChildren } from "react";
 export const FormContext = createContext({
   setValues: (v: any) => {},
   values: {} as Record<string, any>,
+  setError: (arg: boolean) => {},
+  error: false,
 });
 
 const SimpleForm = ({ children }: PropsWithChildren<{}>) => {
   const [values, setValues] = React.useState({});
+  const [error, setError] = React.useState(false);
   const value = React.useMemo(
-    () => ({ setValues, values }),
+    () => ({ setValues, values, setError, error }),
     [setValues, values]
   );
 
@@ -17,13 +20,11 @@ const SimpleForm = ({ children }: PropsWithChildren<{}>) => {
     alert(JSON.stringify(values));
   };
 
-  // if (error) prevent submit
-
   return (
     <FormContext.Provider value={value}>
       <form>
         {children}
-        <button type={"submit"} onClick={onClick}>
+        <button type={"submit"} onClick={onClick} disabled={error}>
           제출
         </button>
       </form>
