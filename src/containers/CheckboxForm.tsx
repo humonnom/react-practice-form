@@ -1,38 +1,19 @@
-import useChecks from "../hooks/useChecks";
-import { validateCheckbox } from "../utils/validationUtil";
+import SimpleForm from "../components/SimpleForm";
+import TextField from "../components/TextField";
+import { min, max } from "../utils/validationUtil";
 
-function CheckboxContainer({ update }: any): JSX.Element {
-  const [checks, isAllchecked, renderChecks] = useChecks({
-    initialChecks: {
-      term: {
-        id: "term",
-        label: "약관 동의",
-        checked: false,
-        required: true,
-        validate: validateCheckbox,
-      },
-      privacyPolicy: {
-        id: "privacy-policy",
-        label: "개인정보 수집 동의",
-        checked: false,
-        required: true,
-        validate: validateCheckbox,
-      },
-      receiveEmail: {
-        id: "receive-email",
-        label: "이메일 수신 동의",
-        checked: false,
-        required: false,
-        validate: validateCheckbox,
-      },
-    },
-  });
+function CheckboxForm(): JSX.Element {
   return (
-    <div>
-      <p>== Check Container ==</p>
-      {renderChecks()}
-    </div>
+    <SimpleForm>
+      <TextField source={"name"} label={"이름"} validate={[min(5), max(10)]} />
+      <TextField
+        type="password"
+        source={"password"}
+        label={"비밀번호"}
+        validate={[min(5), max(10)]}
+      />
+    </SimpleForm>
   );
 }
 
-export default CheckboxContainer;
+export default CheckboxForm;
