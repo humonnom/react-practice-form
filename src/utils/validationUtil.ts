@@ -60,3 +60,24 @@ export const validatePhone = (isRequired: boolean, value: string) => {
   if (isOverlap(TYPE.PHONE, value)) return STATE.OVERLAP;
   return STATE.OK;
 };
+
+// validators
+
+export const min = (minLen: number) => {
+  return (source: string) => {
+    if (source?.length < minLen) return `${minLen}보다 길게 적어주세요.`;
+    else return "";
+  };
+};
+export const max = (maxLen: number) => {
+  return (source: string) => {
+    if (source?.length > maxLen) return `${maxLen}보다 짧게 적어주세요.`;
+    else return "";
+  };
+};
+export const match = (regex: RegExp) => {
+  return (source: string) => {
+    if (!regex.test(source)) return "형식에 맞지 않습니다.";
+    else return "";
+  };
+};

@@ -4,6 +4,7 @@ import PasswordContainer from "../containers/PasswordForm";
 import UserInfoForm from "../containers/UserInfoForm";
 import CheckboxContainer from "../containers/CheckboxForm";
 import { reducer } from "../utils/util";
+import { ErrorBoundary } from "../components/ErrorBoundary";
 
 export type Data = { isAllOk: boolean; allValues: any };
 
@@ -46,8 +47,9 @@ const JoinPage = () => {
   }, [submittable]);
 
   return (
-    <>
+    <ErrorBoundary>
       {/*<form>*/}
+
       <UserInfoForm />
       {/*  <PasswordContainer*/}
       {/*    update={(newData: Data) => updateData("passwords", newData)}*/}
@@ -59,7 +61,7 @@ const JoinPage = () => {
       {/*    {submitButtonMessege}*/}
       {/*  </button>*/}
       {/*</form>*/}
-    </>
+    </ErrorBoundary>
   );
 };
 
