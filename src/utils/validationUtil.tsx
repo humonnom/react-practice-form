@@ -9,7 +9,7 @@ import {
   TYPE,
 } from "./util";
 
-export const validateCheck = (isRequired: boolean, value: boolean) => {
+export const validateCheckbox = (isRequired: boolean, value: boolean) => {
   if (isFalse(isRequired) || (isTrue(isRequired) && isTrue(value))) {
     return STATE.OK;
   }

@@ -1,7 +1,7 @@
 import { useMemo, useReducer } from "react";
 import useInputs from "../hooks/useInputs";
 import { STATE, toggle } from "../utils/util";
-import { validatePassword } from "../utils/validate";
+import { validatePassword } from "../utils/validationUtil";
 
 function PasswordContainer({ update }: any): JSX.Element {
   const [viewPassword, toggleViewPassword] = useReducer(toggle, false);

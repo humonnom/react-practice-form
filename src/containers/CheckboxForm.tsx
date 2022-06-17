@@ -1,5 +1,5 @@
 import useChecks from "../hooks/useChecks";
-import { validateCheck } from "../utils/validate";
+import { validateCheckbox } from "../utils/validationUtil";
 
 function CheckboxContainer({ update }: any): JSX.Element {
   const [checks, isAllchecked, renderChecks] = useChecks({
@@ -9,21 +9,21 @@ function CheckboxContainer({ update }: any): JSX.Element {
         label: "약관 동의",
         checked: false,
         required: true,
-        validate: validateCheck,
+        validate: validateCheckbox,
       },
       privacyPolicy: {
         id: "privacy-policy",
         label: "개인정보 수집 동의",
         checked: false,
         required: true,
-        validate: validateCheck,
+        validate: validateCheckbox,
       },
       receiveEmail: {
         id: "receive-email",
         label: "이메일 수신 동의",
         checked: false,
         required: false,
-        validate: validateCheck,
+        validate: validateCheckbox,
       },
     },
   });
