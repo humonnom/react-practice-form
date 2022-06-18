@@ -1,6 +1,7 @@
 import React, { FunctionComponent } from "react";
 import { SelectProps } from "../types/InputProps";
 import useInput from "../hooks/useInput";
+import ErrorMessage from "./ErrorMessage";
 
 const SelectboxField: FunctionComponent<SelectProps> = ({
   source,
@@ -22,6 +23,7 @@ const SelectboxField: FunctionComponent<SelectProps> = ({
         <label htmlFor={source}>{label}</label>
         <select onChange={(e) => onChange(e.target.value)}>{optionComp}</select>
       </div>
+      <ErrorMessage>{error}</ErrorMessage>
     </div>
   );
 };

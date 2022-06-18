@@ -1,6 +1,7 @@
 import React, { FunctionComponent } from "react";
 import { InputProps } from "../types/InputProps";
 import useInput from "../hooks/useInput";
+import ErrorMessage from "./ErrorMessage";
 
 const TextField: FunctionComponent<InputProps> = ({
   source,
@@ -22,7 +23,7 @@ const TextField: FunctionComponent<InputProps> = ({
           placeholder={placeholder}
         />
       </div>
-      <p>{error}</p>
+      <ErrorMessage>{error}</ErrorMessage>
     </div>
   );
 };

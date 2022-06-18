@@ -1,29 +1,29 @@
-import React, { createContext, PropsWithChildren, useEffect } from "react";
+import React, { createContext, PropsWithChildren, useMemo } from "react";
 
 export const FormContext = createContext({
   setValues: (v: any) => {},
   values: {} as Record<string, any>,
-  setSubmittable: (arg: boolean) => {},
+  setErrors: (err: any) => {},
+  errors: {} as Record<string, any>,
 });
 
 const SimpleForm = ({ children }: PropsWithChildren<{}>) => {
   const [values, setValues] = React.useState({});
-  const [submittable, setSubmittable] = React.useState(false);
+  const [errors, setErrors] = React.useState({});
   const value = React.useMemo(
-    () => ({ setValues, values, setSubmittable }),
-    [setValues, values]
+    () => ({ setValues, values, setErrors, errors }),
+    [setValues, values, setErrors, errors]
   );
-
-  useEffect(() => {
-    console.log(submittable);
-  }, [submittable]);
+  const hasError = useMemo(() => {
+    return Object.values(errors).some((e) => e);
+  }, [errors]);
 
   const onClick = (e: any) => {
     e.preventDefault();
-    if (submittable) {
-      alert(JSON.stringify(values));
+    if (hasError) {
+      alert("입력값을 다시 한번 확인해주세요.");
     } else {
-      alert("입력값을 확인해주세요.");
+      alert(JSON.stringify(values));
     }
   };
 

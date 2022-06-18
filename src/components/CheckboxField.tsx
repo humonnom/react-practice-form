@@ -1,6 +1,7 @@
 import React, { FunctionComponent } from "react";
 import { InputProps } from "../types/InputProps";
 import useInput from "../hooks/useInput";
+import ErrorMessage from "./ErrorMessage";
 
 const CheckboxField: FunctionComponent<InputProps> = ({
   source,
@@ -19,6 +20,7 @@ const CheckboxField: FunctionComponent<InputProps> = ({
           type="checkbox"
         />
       </div>
+      <ErrorMessage>{error}</ErrorMessage>
     </div>
   );
 };
