@@ -1,5 +1,5 @@
 import { InputProps } from "../types/InputProps";
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { FormContext } from "../components/SimpleForm";
 
 interface UseInputProps extends Pick<InputProps, "source" | "validate"> {}
@@ -7,20 +7,17 @@ interface UseInputProps extends Pick<InputProps, "source" | "validate"> {}
 function useInput(props: UseInputProps) {
   const { setValues, values, setErrors, errors } = useContext(FormContext);
 
-  const getError = React.useCallback(
-    (source: string | number | boolean) => {
-      let message: string = "";
-      props.validate?.forEach((f) => {
-        if (message) return false;
-        message = f(source.toString()); // TODO solve validator args type conflict
-      });
-      return message;
-    },
-    [props.validate]
-  );
+  const getError = (source: any) => {
+    let error: string = "";
+    props.validate?.some((f) => {
+      if (!error) error = f(source);
+      else return true;
+    });
+    return error;
+  };
 
   const onChange = React.useCallback(
-    (v: string | number | boolean) => {
+    (v: string | boolean) => {
       setValues({
         ...values,
         [props.source]: v,

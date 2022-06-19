@@ -4,7 +4,7 @@ export const FormContext = createContext({
   setValues: (v: any) => {},
   values: {} as Record<string, any>,
   setErrors: (err: any) => {},
-  errors: {} as Record<string, any>,
+  errors: {} as Record<string, string>,
 });
 
 const SimpleForm = ({ children }: PropsWithChildren<{}>) => {

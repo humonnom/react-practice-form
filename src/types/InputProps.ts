@@ -5,9 +5,9 @@ export interface InputProps {
   label: string;
   placeholder?: string;
   type?: HTMLInputTypeAttribute;
-  validate?: { (source: string): string }[];
+  validate?: { (source: any): string }[];
 }
 export interface SelectProps
   extends Pick<InputProps, "source" | "validate" | "label"> {
-  option: { key: string; value: string }[];
+  option: { value: string; optionLabel: string }[];
 }

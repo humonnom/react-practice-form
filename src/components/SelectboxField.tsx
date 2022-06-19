@@ -10,13 +10,12 @@ const SelectboxField: FunctionComponent<SelectProps> = ({
   validate,
 }) => {
   const { value, onChange, error } = useInput({ source, validate });
-  const optionComp = React.useMemo(() => {
-    return option.map((element) => (
-      <option key={element.key} value={element.value}>
-        {element.value}
-      </option>
-    ));
-  }, [option]);
+  const optionComp = option.map((element) => (
+    <option key={element.value} value={element.value}>
+      {element.optionLabel}
+    </option>
+  ));
+
   return (
     <div>
       <div style={{ display: "flex", gridGap: "8px" }}>
