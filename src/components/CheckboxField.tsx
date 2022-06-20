@@ -14,6 +14,7 @@ const CheckboxField: FunctionComponent<InputProps> = ({
       <div style={{ display: "flex", gridGap: "8px" }}>
         <label htmlFor={source}>{label}</label>
         <input
+          id={source}
           checked={value ?? false}
           onChange={(e) => onChange(e.target.checked)}
           name={source}

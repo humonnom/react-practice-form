@@ -31,8 +31,8 @@ const SimpleForm = ({ children }: PropsWithChildren<{}>) => {
     <FormContext.Provider value={value}>
       <form>
         {children}
-        <button type={"submit"} onClick={onClick}>
-          제출
+        <button type={"submit"} onClick={onClick} disabled={hasError}>
+          {hasError ? "제출 안됨" : "제출"}
         </button>
       </form>
     </FormContext.Provider>

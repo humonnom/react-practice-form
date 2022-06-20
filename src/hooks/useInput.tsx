@@ -1,5 +1,5 @@
 import { InputProps } from "../types/InputProps";
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { FormContext } from "../components/SimpleForm";
 
 interface UseInputProps extends Pick<InputProps, "source" | "validate"> {}
@@ -10,14 +10,14 @@ function useInput(props: UseInputProps) {
   const getError = (source: any) => {
     let error: string = "";
     props.validate?.some((f) => {
-      if (!error) error = f(source);
-      else return true;
+      if (error) return true;
+      else error = f(source);
     });
     return error;
   };
 
   const onChange = React.useCallback(
-    (v: string | boolean) => {
+    (v: string | number | boolean) => {
       setValues({
         ...values,
         [props.source]: v,

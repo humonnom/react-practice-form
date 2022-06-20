@@ -20,7 +20,9 @@ const SelectboxField: FunctionComponent<SelectProps> = ({
     <div>
       <div style={{ display: "flex", gridGap: "8px" }}>
         <label htmlFor={source}>{label}</label>
-        <select onChange={(e) => onChange(e.target.value)}>{optionComp}</select>
+        <select id={source} onChange={(e) => onChange(e.target.value)}>
+          {optionComp}
+        </select>
       </div>
       <ErrorMessage>{error}</ErrorMessage>
     </div>

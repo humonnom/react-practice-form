@@ -1,4 +1,4 @@
-import { PropsWithChildren } from "react";
+import { PropsWithChildren, useEffect } from "react";
 
 const ErrorMessage = ({ children }: PropsWithChildren<{}>) => {
   return (
@@ -10,7 +10,8 @@ const ErrorMessage = ({ children }: PropsWithChildren<{}>) => {
         marginBottom: "15px",
       }}
     >
-      <p>{children}</p>
+      {/* <p>{children}</p> */}
+      <p role="error">{children}</p>
     </div>
   );
 };
