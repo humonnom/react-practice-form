@@ -1,4 +1,5 @@
 import React, { createContext, PropsWithChildren, useMemo } from "react";
+import { isEmptyObject } from "../utils/util";
 
 export const FormContext = createContext({
   setValues: (v: any) => {},
@@ -20,7 +21,7 @@ const SimpleForm = ({ children }: PropsWithChildren<{}>) => {
 
   const onClick = (e: any) => {
     e.preventDefault();
-    if (hasError) {
+    if (isEmptyObject(values)) {
       alert("입력값을 다시 한번 확인해주세요.");
     } else {
       alert(JSON.stringify(values));
@@ -32,7 +33,7 @@ const SimpleForm = ({ children }: PropsWithChildren<{}>) => {
       <form>
         {children}
         <button type={"submit"} onClick={onClick} disabled={hasError}>
-          {hasError ? "제출 안됨" : "제출"}
+          제출
         </button>
       </form>
     </FormContext.Provider>
