@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useEffect } from "react";
+import React, { FunctionComponent } from "react";
 import { InputProps } from "../types/InputProps";
 import useInput from "../hooks/useInput";
 import ErrorMessage from "./ErrorMessage";

@@ -58,6 +58,15 @@ const setLengthErrorTest = (minNum: number, maxNum: number) => {
   };
 };
 
+test("check button change after edit test [SimpleForm]", async () => {
+  const { input, button } = setup("name", "이름", 5, 10);
+
+  await userEvent.type(input, "1234"); // wrong input
+  expect(button).toBeDisabled();
+  await userEvent.type(input, "56"); // add input
+  expect(button).toBeEnabled();
+});
+
 test("check error message [min, max]", () => {
   try {
     const test = setLengthErrorTest(5, 10);

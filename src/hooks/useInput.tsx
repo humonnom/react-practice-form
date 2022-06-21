@@ -1,11 +1,12 @@
 import { InputProps } from "../types/InputProps";
-import React, { useContext, useEffect } from "react";
+import React from "react";
 import { FormContext } from "../components/SimpleForm";
 
 interface UseInputProps extends Pick<InputProps, "source" | "validate"> {}
 
 function useInput(props: UseInputProps) {
-  const { setValues, values, setErrors, errors } = useContext(FormContext);
+  const { setValues, values, setErrors, errors } =
+    React.useContext(FormContext);
 
   const getError = (source: any) => {
     let error: string = "";

@@ -8,10 +8,8 @@ const ErrorMessage = ({ children }: PropsWithChildren<{}>) => {
         color: "blue",
         fontSize: "12px",
         marginBottom: "15px",
-      }}
-    >
-      {/* <p>{children}</p> */}
-      <p role="error">{children}</p>
+      }}>
+      <p role='error'>{children}</p>
     </div>
   );
 };

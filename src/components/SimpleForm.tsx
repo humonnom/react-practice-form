@@ -1,4 +1,4 @@
-import React, { createContext, PropsWithChildren, useMemo } from "react";
+import React, { createContext, PropsWithChildren } from "react";
 import { isEmptyObject } from "../utils/util";
 
 export const FormContext = createContext({
@@ -15,7 +15,7 @@ const SimpleForm = ({ children }: PropsWithChildren<{}>) => {
     () => ({ setValues, values, setErrors, errors }),
     [setValues, values, setErrors, errors]
   );
-  const hasError = useMemo(() => {
+  const hasError = React.useMemo(() => {
     return Object.values(errors).some((e) => e);
   }, [errors]);
 
