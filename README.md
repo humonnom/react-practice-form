@@ -5,10 +5,11 @@
 - form 배포 [https://react-practice-form.vercel.app/](https://react-practice-form.vercel.app/)
 
 # 프로젝트 소개
-
+## 시작한 계기
 - RUTH: React Under The Hood 스터디
 - Project 00: FORM 만들기
 
+<!--
 ## Project00 구현사항
 
 - [ ] 회원가입 Dummy API 찾아보기
@@ -28,18 +29,16 @@
   - 비밀번호 확인이 일치한지
 - 회원가입 축하 메시지(`유저네임` 님)
 
-<!--
+
 # 실행 화면(추후 업데이트 예정)
 
 # 실행 방법(추후 업데이트 예정)
 -->
 
 ## 신경쓴 것
-
 - 이전 프로젝트에서 짰던 코드를 참고하여 리팩토링 하였음
 
 ### useInput의 복잡함 줄이기
-
 - 이전 프로젝트에서 useInput이 많은 역할을 맡아 복잡해진 경험이 있음
 
   - validation 체크
@@ -56,6 +55,7 @@
   - useInput은 각 입력창과 현재 입력값만 관리
   - state 메세지의 출력은 개별 컴포넌트가 따로 관리
 
+## 2단계: reducer, symbol 활용
 ### useReducer 사용하기
 
 - 이전 프로젝트에서 useState를 많이 사용해서 가독성이 좋지 않았음
@@ -93,15 +93,16 @@ const [certState, setCertState] = useState(false);
 
 # 버그 및 기능 요청(추후 업데이트 예정)
 
--->
+
 
 # 기여자 정보
 
 - [humonnom](https://github.com/humonnom)
 
 ---
+-->
 
-## 요구사항
+## 3단계(과제전형): SimpleForm, useInput으로 view와 로직 분리
 
 ### 1. 값을 검증하는 코드 추가
 
@@ -115,9 +116,3 @@ const [certState, setCertState] = useState(false);
 ### 2. CheckboxField, SelecboxField 컴포넌트 추가
 
 ### 3. SimpleForm, TextField에 대해서 테스트 코드 작성
-
-## 신경쓴 부분
-
-### 남은 문제
-
-- 최초 로드시 에러가 없는 것이 디폴트이기 때문에 제출 가능
