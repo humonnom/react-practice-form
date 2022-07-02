@@ -1,32 +1,31 @@
 import React, { FunctionComponent } from "react";
-import { InputProps } from "../types/InputProps";
+import { SelectProps } from "../types/InputProps";
 import useInput from "../hooks/useInput";
 import ErrorMessage from "./ErrorMessage";
 
-const TextField: FunctionComponent<InputProps> = ({
+const SelectboxField: FunctionComponent<SelectProps> = ({
   source,
   label,
-  placeholder,
-  type,
+  options,
   validate,
 }) => {
   const { value, onChange, error } = useInput({ source, validate });
+
   return (
     <div>
       <div style={{ display: "flex", gridGap: "8px" }}>
         <label htmlFor={source}>{label}</label>
-        <input
-          id={source}
-          value={value ?? ""}
-          onChange={(e) => onChange(e.target.value)}
-          name={source}
-          type={type}
-          placeholder={placeholder}
-        />
+        <select id={source} onChange={(e) => onChange(e.target.value)}>
+          {options.map((element) => (
+            <option key={element.value} value={element.value}>
+              {element.optionLabel}
+            </option>
+          ))}
+        </select>
       </div>
       <ErrorMessage>{error}</ErrorMessage>
     </div>
   );
 };
 
-export default TextField;
+export default SelectboxField;

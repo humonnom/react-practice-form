@@ -1,0 +1,19 @@
+### 구조
+#   - Subject, Body, Footer
+#   - 각 요소는 빈줄로 구분
+### Subject
+#   type              : Subject under 50 characters(#issue)
+### Body
+#   Add               : 코드, 테스트, 예제, 문서를 추가할 때
+#   Fix               : 오타 수정 시
+#   Update            : 문서나 리소스의 변경이 있을 때
+#   Improve           : 호환성, 테스트 커버리지, 성능 등 다양한 목적의 향상이 있을 때
+#   Remove            : 삭제 시
+#   Rename            : 이름 변경시
+#   Move              : 코드의 이동이 있을 때
+#   Test              : 테스트 추가, 수정, 삭제
+#   revert            : 작업 되돌리기
+### Footer
+#   Resolves: #0      : 해결
+#   See also: #0, #0  : 참고
+###

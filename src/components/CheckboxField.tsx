@@ -3,11 +3,9 @@ import { InputProps } from "../types/InputProps";
 import useInput from "../hooks/useInput";
 import ErrorMessage from "./ErrorMessage";
 
-const TextField: FunctionComponent<InputProps> = ({
+const CheckboxField: FunctionComponent<InputProps> = ({
   source,
   label,
-  placeholder,
-  type,
   validate,
 }) => {
   const { value, onChange, error } = useInput({ source, validate });
@@ -17,11 +15,10 @@ const TextField: FunctionComponent<InputProps> = ({
         <label htmlFor={source}>{label}</label>
         <input
           id={source}
-          value={value ?? ""}
-          onChange={(e) => onChange(e.target.value)}
+          checked={value ?? false}
+          onChange={(e) => onChange(e.target.checked)}
           name={source}
-          type={type}
-          placeholder={placeholder}
+          type="checkbox"
         />
       </div>
       <ErrorMessage>{error}</ErrorMessage>
@@ -29,4 +26,4 @@ const TextField: FunctionComponent<InputProps> = ({
   );
 };
 
-export default TextField;
+export default CheckboxField;
