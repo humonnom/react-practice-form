@@ -9,5 +9,5 @@ export interface InputProps {
 }
 export interface SelectProps
   extends Pick<InputProps, "source" | "validate" | "label"> {
-  option: { value: string; optionLabel: string }[];
+  options: { value: string; optionLabel: string }[];
 }

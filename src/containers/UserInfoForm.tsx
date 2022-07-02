@@ -19,7 +19,7 @@ function UserInfoForm(): JSX.Element {
       <SelectboxField
         source={"area"}
         label={"거주지역"}
-        option={[
+        options={[
           { value: "", optionLabel: "=== choose ===" },
           { value: "seoul", optionLabel: "서울시" },
           { value: "gyeonggi", optionLabel: "경기도" },

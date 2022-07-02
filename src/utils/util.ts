@@ -1,5 +1,14 @@
-export const isEmptyString = (value: string) => value.length === 0;
-
-export const isString = (value: any) => value?.constructor === String;
-
-export const isEmptyObject = (value: object) => Object.keys(value).length === 0;
+export const isEmpty = (value: any) => {
+  if (value === null) {
+    return true;
+  }
+  /* string */
+  if (typeof value === "string") {
+    return value.length === 0;
+  }
+  /* object */
+  if (typeof value === "object") {
+    return Object.keys(value).length === 0;
+  }
+  /* other type */
+};

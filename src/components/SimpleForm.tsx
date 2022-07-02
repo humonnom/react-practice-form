@@ -1,5 +1,5 @@
-import React, { createContext, PropsWithChildren } from "react";
-import { isEmptyObject } from "../utils/util";
+import React, { createContext, PropsWithChildren, useMemo } from "react";
+import { isEmpty } from "../utils/util";
 
 export const FormContext = createContext({
   setValues: (v: any) => {},
@@ -21,7 +21,7 @@ const SimpleForm = ({ children }: PropsWithChildren<{}>) => {
 
   const onClick = (e: any) => {
     e.preventDefault();
-    if (isEmptyObject(values)) {
+    if (isEmpty(values)) {
       alert("입력값을 다시 한번 확인해주세요.");
     } else {
       alert(JSON.stringify(values));
